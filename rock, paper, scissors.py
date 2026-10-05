@@ -1,36 +1,59 @@
 import random
 
-wins = 0
-losses = 0
+while True:
+    try:
+        wins = int(input("How many wins/losses will we play until? (number)"))
+        if wins < 1:
+            print("Must be at least 1!")
+            continue
+        losses = wins
+    except ValueError:
+        print("Only numbers!")
+        continue
+    break
+
+wins1 = 0
+losses1 = 0
 
 while True:
-    my_choice = input("rock, paper, scissors: ").lower().strip()
-    options = ["rock", "paper", "scissors"]
+    print()
+    my_choice = input("rock, paper, scissors, wind: ").lower().strip()
+    options = ["rock", "paper", "scissors", "wind"]
     computer = random.choice(options)
+    print()
     print(f"Computer chose: {computer}")
+    
+    rock = ["scissors", "wind"]
+    paper = ["rock"]
+    scissors = ["paper", "wind"]
+    wind = ["paper"]
 
     if my_choice not in options:
         print("I don't know that, try again")
         continue
-
-    if my_choice == computer:
+    elif my_choice == computer:
         print("Draw!")
-    elif my_choice == "rock" and computer == "scissors":
-        print("You win!")
-        wins += 1
-    elif my_choice == "paper" and computer == "rock":
-        print("You win!")
-        wins += 1
-    elif my_choice == "scissors" and computer == "paper":
-        print("You win!")
-        wins += 1
+    elif my_choice == "rock" and computer not in rock:
+        print("Computer win!")
+        losses1 += 1
+    elif my_choice == "paper" and computer not in paper:
+        print("Computer win!")
+        losses1 += 1
+    elif my_choice == "scissors" and computer not in scissors:
+        print("Computer win!")
+        losses1 += 1
+    elif my_choice == "wind" and computer not in wind:
+        print("computer win!")
+        losses1 += 1
     else:
-        print("Computer wins!")
-        losses += 1
+        print("You win!")
+        wins1 += 1
 
-    if wins >= 3:
-        print(f"You won the game! Wins: {wins}, losses: {losses}")
+    if wins1 >= wins:
+        print()
+        print(f"You won the game! Wins: {wins1}, losses: {losses1}")
         break
-    if losses >= 3:
-        print(f"You lost! Wins: {wins}, losses: {losses}")
+    if losses1 >= wins:
+        print()
+        print(f"You lost! Wins: {wins1}, losses: {losses1}")
         break
