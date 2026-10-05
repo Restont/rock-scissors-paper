@@ -1,5 +1,4 @@
-# Rock Paper Scissors
-
+# Rock Scissors Paper
 A simple game in Python. You play against the computer.
 
 ## Features
